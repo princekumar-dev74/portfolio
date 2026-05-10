@@ -120,7 +120,7 @@ export default function App() {
       {mobileMenu && (
         <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 text-white uppercase tracking-[0.3em] text-sm md:hidden">
 
-          <div className="absolute top-10 text-center">
+          <div className="absolute top-30 text-center">
             <p className="text-[10px] text-white/40 tracking-[0.3em] mb-2">
               TIME
             </p>
