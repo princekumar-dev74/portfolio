@@ -7,7 +7,7 @@ import heroEye from "@/assets/hero-eye.png";
 
 import WelcomeScreen from "@/components/WelcomeScreen";
 import FrontendDeveloperSection from "@/components/FrontendDeveloperSection";
-import Showcase from "./components/showcase";
+import Showcase from "./components/Showcase";
 
 const logos = ["PRINCE", "WEBKAIZEN", "FRONTEND", "DEVELOPER"];
 
