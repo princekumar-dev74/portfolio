@@ -31,6 +31,18 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (showWelcome || mobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showWelcome, mobileMenu]);
+
+  useEffect(() => {
     const updateTime = () => {
       const now = new Date();
       setTime(

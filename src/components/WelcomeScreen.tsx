@@ -1,8 +1,19 @@
 import { motion } from "framer-motion";
 import { Code2, User, Globe } from "lucide-react";
+import { useEffect } from "react";
 
 export default function WelcomeScreen() {
   const icons = [Code2, User, Globe];
+
+  useEffect(() => {
+    // scroll band
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      // welcome screen hatne ke baad scroll wapas
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   return (
     <motion.div
