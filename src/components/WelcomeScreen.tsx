@@ -153,30 +153,17 @@ export default function WelcomeScreen() {
         </motion.div>
 
         {/* Bottom Loading Line */}
-        <motion.div
-          initial={{ width: 0, opacity: 0 }}
-          animate={{
-            width: "100%",
-            opacity: 1,
-          }}
-          transition={{
-            delay: 0.8,
-            duration: 3.8,
-            ease: "easeInOut",
-          }}
-          className="h-[2px] bg-white/20 rounded-full overflow-hidden mt-2"
-        >
+        <div className="mt-10 w-[240px] bg-white/20 h-[2px] overflow-hidden rounded-full">
           <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "100%" }}
+            initial={{ width: "10%" }}
+            animate={{ width: "100%" }}
             transition={{
-              repeat: Infinity,
-              duration: 1.6,
-              ease: "linear",
+              duration: 6.5,
+              ease: [0.22, 1, 0.36, 1],
             }}
-            className="w-1/3 h-full bg-white"
+            className="h-full bg-white"
           />
-        </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   );

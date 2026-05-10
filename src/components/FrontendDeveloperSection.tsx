@@ -15,7 +15,7 @@ export default function FrontendDeveloperSection() {
     <section
       ref={ref}
       id="frontend"
-      className="relative w-full min-h-screen bg-black text-white overflow-hidden flex items-start px-6 md:px-20 pt-16 md:pt-28"
+      className="relative w-full min-h-screen bg-black text-white overflow-hidden flex items-start px-6 md:px-20 pt-16 md:pt-28 select-none"
     >
       {/* TEXT */}
       <div className="relative z-10 max-w-2xl">

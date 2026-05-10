@@ -1,6 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import favicon from "/favicon.ico";
 
 import heroEye from "@/assets/hero-eye.png";
 
@@ -12,6 +13,7 @@ const logos = ["PRINCE", "WEBKAIZEN", "FRONTEND", "DEVELOPER"];
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [time, setTime] = useState("");
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   const text = "PRINCE";
   const [displayed, setDisplayed] = useState("");
@@ -59,22 +61,113 @@ export default function App() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <AnimatePresence>{showWelcome && <WelcomeScreen />}</AnimatePresence>
 
-      <nav className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-6">
-        <div className="text-[10px] md:text-xs tracking-[0.3em] text-white/70 uppercase font-medium">
-          PRINCE · WEBKAIZEN
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 backdrop-blur-xl bg-black/20 border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <img
+            src={favicon}
+            alt="Logo"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+
+          <span className="text-[10px] md:text-xs tracking-[0.3em] text-white/70 uppercase font-medium">
+            PRINCE · WEBKAIZEN
+          </span>
         </div>
         <ul className="hidden md:flex items-center gap-10 text-xs tracking-widest text-white/70 uppercase">
-          <li className="hover:text-white transition-colors cursor-pointer">Work</li>
-          <li className="hover:text-white transition-colors cursor-pointer">About</li>
-          <li className="hover:text-white transition-colors cursor-pointer">Services</li>
-          <li className="hover:text-white transition-colors cursor-pointer">Contact</li>
+          <li
+            onClick={() =>
+              document.getElementById("work")?.scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+            className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Home
+          </li>
+
+          <li
+            onClick={() =>
+              document.getElementById("about")?.scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+            className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+          >
+            About
+          </li>
+
+          <li className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+            Services
+          </li>
+
+          <li className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+            Contact
+          </li>
         </ul>
-        <div className="md:hidden text-[10px] tracking-[0.3em] text-white/70 uppercase">
+
+        <div className="hidden md:block text-[10px] tracking-[0.3em] text-white/70 uppercase">
           {time}
         </div>
+
+        <button
+          onClick={() => setMobileMenu(!mobileMenu)}
+          className="md:hidden text-white z-50"
+        >
+          {mobileMenu ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
 
-      <section className="relative w-full h-screen min-h-[640px] overflow-hidden bg-black">
+      {mobileMenu && (
+        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 text-white uppercase tracking-[0.3em] text-sm md:hidden">
+
+          <div className="absolute top-10 text-center">
+            <p className="text-[10px] text-white/40 tracking-[0.3em] mb-2">
+              TIME
+            </p>
+
+            <h2 className="text-2xl tracking-widest font-semibold">
+              {time}
+            </h2>
+          </div>
+
+          <button
+            onClick={() => {
+              document.getElementById("Home")?.scrollIntoView({
+                behavior: "smooth",
+              });
+              setMobileMenu(false);
+            }}
+            className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
+          >
+            Home
+          </button>
+
+          <button
+            onClick={() => {
+              document.getElementById("about")?.scrollIntoView({
+                behavior: "smooth",
+              });
+              setMobileMenu(false);
+            }}
+            className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
+          >
+            About
+          </button>
+
+          <button className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full">
+            Services
+          </button>
+
+          <button className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full">
+            Contact
+          </button>
+        </div>
+      )}
+
+      <section
+        id="Home"
+        className="relative w-full h-screen min-h-[640px] overflow-hidden bg-black"
+      >
         <div className="absolute inset-0 flex items-center justify-center">
           <img
             src={heroEye}
@@ -142,11 +235,13 @@ export default function App() {
           100% { transform: translateX(-33.333%); }
         }
         .animate-marquee {
-          animation: marquee 22s linear infinite;
+          animation: marquee 10s linear infinite;
         }
       `}</style>
 
-      <FrontendDeveloperSection />
+      <section id="about">
+        <FrontendDeveloperSection />
+      </section>
     </div>
   );
 }
