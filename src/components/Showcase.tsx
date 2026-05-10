@@ -12,7 +12,7 @@ const tabs = [
     items: [
       {
         tech: "React + Three.js",
-        thumbnail: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+        thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
         github: "#"
       },
       {
