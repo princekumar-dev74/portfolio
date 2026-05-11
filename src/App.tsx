@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import favicon from "/favicon.ico";
 
-import heroEye from "@/assets/hero-eye1.png";
+import heroEye from "@/assets/hero-eye.png";
 
 import WelcomeScreen from "@/components/WelcomeScreen";
 import FrontendDeveloperSection from "@/components/FrontendDeveloperSection";
 import Showcase from "./components/Showcase";
 import { Routes, Route } from "react-router-dom";
-import About from "./pages/about";
+import About from "./pages/About";
 
 
 const logos = ["PRINCE", "WEBKAIZEN", "FRONTEND", "DEVELOPER"];
