@@ -1,20 +1,62 @@
 import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 
 const BandCard = lazy(() => import("./BandCard"));
 
 export default function FrontendDeveloperSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { amount: 0.4 });
+
   const [showCard, setShowCard] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [goAbout, setGoAbout] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => setMounted(true), []);
 
+  // page exit → navigate after animation
+  useEffect(() => {
+    if (goAbout) {
+      const t = setTimeout(() => {
+        navigate("/about");
+      }, 1800);
+
+      return () => clearTimeout(t);
+    }
+  }, [goAbout, navigate]);
+
   return (
-    <section
+
+    <motion.section
       ref={ref}
       id="frontend"
+      initial={{
+        x: 0,
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+      }}
+      animate={
+        goAbout
+          ? {
+            x: "-40vw",
+            scale: 0.92,
+            opacity: 0,
+            filter: "blur(8px)",
+          }
+          : {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            filter: "blur(0px)",
+          }
+      }
+      transition={{
+        duration: 1.8,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className="relative w-full min-h-screen bg-black text-white overflow-hidden flex items-start px-6 md:px-20 pt-16 md:pt-28 select-none"
     >
       {/* TEXT */}
@@ -109,19 +151,32 @@ export default function FrontendDeveloperSection() {
           ))}
         </motion.div>
 
-        {/* Reveal card button */}
-        <motion.button
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          onClick={() => setShowCard((s) => !s)}
-          className="mt-8 inline-flex items-center gap-2 border border-accent text-accent px-6 py-3 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-accent hover:text-black transition-all duration-300 rounded-full relative z-20"
-        >
-          {showCard ? "Hide Card" : "Show Card"}
-        </motion.button>
+        <div className="mt-8 flex flex-col [@media(min-width:540px)]:flex-row items-start md:items-center gap-4">
+          {/* Show Card Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            onClick={() => setShowCard((s) => !s)}
+            className="inline-flex items-center gap-2 border border-accent text-accent px-6 py-3 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-accent hover:text-black transition-all duration-200 rounded-full relative z-20"
+          >
+            {showCard ? "Hide Card" : "Show Card"}
+          </motion.button>
+
+          {/* About Button */}
+          <motion.button
+            initial={{ opacity: 0, x: 80 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.1, delay: 1.4 }}
+            onClick={() => setGoAbout(true)}
+            className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-xs uppercase font-bold hover:bg-white hover:text-black rounded-full transition"
+          >
+            About Me
+          </motion.button>
+        </div>
       </div>
 
-      {/* 3D ID CARD — slides from top on click */}
+      {/* 3D ID CARD */}
       <AnimatePresence>
         {showCard && mounted && (
           <motion.div
@@ -137,6 +192,6 @@ export default function FrontendDeveloperSection() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 }
