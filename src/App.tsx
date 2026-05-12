@@ -8,6 +8,7 @@ import heroEye from "@/assets/hero-eye.png";
 import WelcomeScreen from "@/components/WelcomeScreen";
 import FrontendDeveloperSection from "@/components/FrontendDeveloperSection";
 import Showcase from "./components/Showcase";
+import ContactSection from "@/components/ContactSection";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 
@@ -125,7 +126,14 @@ export default function App() {
                 Showcase
               </li>
 
-              <li className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+              <li
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+                className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+              >
                 Contact
               </li>
             </ul>
@@ -226,7 +234,19 @@ export default function App() {
                 {displayed || "\u00A0"}
               </h1>
 
-              <p className="md:absolute md:top-28 md:right-12 mt-4 md:mt-0 text-right text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.05] text-white">
+              <p className="md:absolute md:top-28 md:right-12
+mt-4 md:mt-0
+text-right
+text-3xl md:text-4xl lg:text-5xl
+leading-[1.05]
+max-w-md
+font-[Poppins] font-bold
+tracking-wide
+text-transparent bg-clip-text
+bg-[length:200%_auto]
+bg-gradient-to-r
+from-white via-white/60 to-white
+animate-[shine_4s_linear_infinite]">
                 Creating
                 <br />
                 Websites
@@ -237,9 +257,17 @@ export default function App() {
               </p>
 
               <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-auto">
-                <p className="text-sm md:text-base text-white/85 max-w-xs leading-relaxed">
-                  Turning creative ideas into interactive and{" "}
-                  <em className="not-italic text-white/60">
+                <p className="relative text-sm sm:text-base lg:text-xl
+    leading-relaxed max-w-md
+    font-[Poppins] font-medium
+    tracking-wide
+    text-transparent bg-clip-text
+    bg-[length:200%_auto]
+    bg-gradient-to-r
+    from-white via-white/60 to-white
+    animate-[shine_4s_linear_infinite]">
+                  Turning creative ideas into interactive and{" "} <br />
+                  <em className="not-italic text-white">
                     high-quality web experiences.
                   </em>
                 </p>
@@ -287,6 +315,9 @@ export default function App() {
           </section>
           <section id="showcase">
             <Showcase />
+          </section>
+          <section id="contact">
+            <ContactSection />
           </section>
         </div>
       } 

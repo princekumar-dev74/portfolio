@@ -327,20 +327,46 @@ export default function ShowcaseSection() {
       <div className="relative z-10 flex flex-col items-center max-w-6xl mx-auto">
 
         {/* Label */}
-        <div className="flex items-center gap-3 mb-5 opacity-0 animate-[fadeSlideDown_0.6s_ease_forwards]">
-          <div className="w-8 h-px bg-white/25" />
-          <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-mono">Showcase</span>
-          <div className="w-8 h-px bg-white/25" />
+        <div className="relative flex items-center justify-center gap-4 mb-5 opacity-0 animate-[fadeSlideDown_0.8s_ease_forwards]">
+
+          <div className="relative overflow-hidden">
+            <div className="w-10 h-px bg-white/20" />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-[lineMove_2s_linear_infinite]" />
+          </div>
+
+          <span className="text-[10px] uppercase tracking-[0.45em] text-white/35 font-mono">
+            Showcase
+          </span>
+
+          <div className="relative overflow-hidden">
+            <div className="w-10 h-px bg-white/20" />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-[lineMove_2s_linear_infinite]" />
+          </div>
+
         </div>
 
         {/* Heading */}
-        <h1
-          className="text-center font-black leading-none tracking-tight mb-4 opacity-0 animate-[fadeSlideUp_0.8s_ease_0.1s_forwards] whitespace-nowrap"
-          style={{ fontSize: "clamp(32px,6vw,80px)" }}
-        >
-          Portfolio Showcase
-        </h1>
-
+        <div className="relative overflow-hidden mb-12">
+          <h1
+            className="text-center font-black tracking-tight leading-none
+    drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]
+    text-white opacity-0 whitespace-nowrap
+    animate-[headingReveal_1s_cubic-bezier(0.22,1,0.36,1)_0.15s_forwards]"
+            style={{
+              fontSize: "clamp(32px,6vw,80px)",
+            }}
+          >
+            <span
+              className="inline-block bg-gradient-to-b
+      from-white via-white to-white/45
+      bg-clip-text text-transparent"
+            >
+              Portfolio Showcase
+            </span>
+          </h1>
+        </div>
 
         {/* Tab Switcher */}
         <div
@@ -406,11 +432,6 @@ export default function ShowcaseSection() {
             </div>
           )}
         </div>
-
-        {/* Swipe hint on mobile */}
-        <p className="mt-8 text-[10px] text-white/20 tracking-widest uppercase font-mono sm:hidden">
-          swipe to navigate
-        </p>
       </div>
 
       <style>{`

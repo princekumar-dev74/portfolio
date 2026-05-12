@@ -115,7 +115,15 @@ export default function FrontendDeveloperSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-4 max-w-lg text-sm md:text-base text-white/70 leading-relaxed"
+          className="relative text-sm sm:text-base lg:text-xl
+    leading-relaxed max-w-md
+    font-[Poppins] font-medium
+    tracking-wide
+    text-transparent bg-clip-text
+    bg-[length:200%_auto]
+    bg-gradient-to-r
+    from-white via-white/60 to-white
+    animate-[shine_4s_linear_infinite]"
         >
           Building modern websites with clean, responsive, elegant interfaces.
           Turning ideas and designs into engaging digital experiences.
