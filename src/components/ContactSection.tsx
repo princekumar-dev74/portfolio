@@ -26,7 +26,7 @@ export default function ContactSection() {
 
         const text = `Hello, my name is ${form.name}%0A%0A${form.message}`;
 
-        const phone = "918092464955";
+        const phone = "91000000000";
 
         window.open(
             `https://wa.me/${phone}?text=${text}`,
