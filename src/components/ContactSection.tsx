@@ -21,12 +21,18 @@ export default function ContactSection() {
         }));
     };
 
-const handleSend = () => {
-    window.open(
-        "https://t.me/Prince_kumar_74",
-        "_blank"
-    );
-};
+    const handleSend = () => {
+        if (!form.name || !form.message) return;
+
+        const text = `Hello, my name is ${form.name}%0A%0A${form.message}`;
+
+        const phone = "91000000000";
+
+        window.open(
+            `https://wa.me/${phone}?text=${text}`,
+            "_blank"
+        );
+    };
 
 
 
